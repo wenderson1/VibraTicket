@@ -8,7 +8,7 @@
       "name": "C#: VibraTicket Debug",
       "type": "dotnet",
       "request": "launch",
-      "projectPath": "${workspaceFolder}/Api/Api.csproj"
+      "projectPath": "${workspaceFolder}/src/Api/Api.csproj"
     }
   ]
 }
