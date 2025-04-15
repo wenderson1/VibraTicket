@@ -15,7 +15,7 @@ public class Event
 
     // Foreign Keys
     public int VenueId { get; set; }
-    public long AffiliateId { get; set; } // Deve corresponder ao tipo do Affiliate.Id
+    public int AffiliateId { get; set; } // Deve corresponder ao tipo do Affiliate.Id
 
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public DateTime? UpdatedAt { get; set; }

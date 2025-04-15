@@ -9,6 +9,7 @@ public class Order
     public decimal TotalAmount { get; set; } // Valor total do pedido
     public OrderStatus Status { get; set; } = OrderStatus.PendingPayment;
     public DateTime OrderDate { get; private set; } = DateTime.UtcNow;
+    public bool IsActive { get; set; } = true;
 
     // Foreign Key
     public int CustomerId { get; set; }

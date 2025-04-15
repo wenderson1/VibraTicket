@@ -12,6 +12,8 @@ public class Payment
     public string? GatewayResponse { get; set; } // Resposta completa do gateway (para auditoria)
     public DateTime PaymentDate { get; private set; } = DateTime.UtcNow;
     public DateTime? ProcessedDate { get; set; } // Quando o pagamento foi aprovado/recusado
+    public bool IsActive { get; set; } = true;
+
 
     // Foreign Key
     public int OrderId { get; set; }
