@@ -1,4 +1,4 @@
-using Infrastructure.Persistence;
+using Api.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,12 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString, sqlOptions =>
-    {
-        sqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
-    }));
-
+builder.Services.AddDependencyInjection(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
