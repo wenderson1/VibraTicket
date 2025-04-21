@@ -1,6 +1,13 @@
-﻿namespace Application.UseCases.Venue.CreateVenue
+namespace Application.UseCases.Venue.CreateVenue
 {
-    public class CreateVenueInput
-    {
-    }
+    public record CreateVenueInput(
+    string Name,
+    string Address,
+    string City,
+    string State,
+    int Capacity,
+    string? ZipCode = null,
+    double? Latitude = null,
+    double? Longitude = null
+);
 }

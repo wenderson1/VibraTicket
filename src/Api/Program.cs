@@ -1,12 +1,10 @@
 using Api.Configurations;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
 builder.Services.AddControllers();
-builder.Services.AddDependencyInjection(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -19,6 +17,10 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDependencyInjection(builder.Configuration);
+
+builder.Services.AddFluentValidationAutoValidation();
 
 var app = builder.Build();
 

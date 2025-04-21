@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace Application.UseCases.Venue.CreateVenue
 {
-    public class CreateVenueInputValidator : AbstractValidator<CreateVenueInput>
+    public class CreateVenueInputValidation : AbstractValidator<CreateVenueInput>
     {
         public CreateVenueInputValidation()
         {
