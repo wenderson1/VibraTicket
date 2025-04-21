@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Application.UseCases.Venue.CreateVenue
+﻿namespace Application.UseCases.Venue.CreateVenue
 {
-    internal class CreateVenueInput
+    public class CreateVenueInput
     {
     }
 }
