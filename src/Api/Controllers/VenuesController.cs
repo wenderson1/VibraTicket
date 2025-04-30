@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.UseCases.Venue.CreateVenue;
 using Api.Common;
 using Application.Commons;
+using Application.Query.Venue.GetVenueById;
 
 namespace Api.Controllers
 {
@@ -9,16 +10,20 @@ namespace Api.Controllers
     public class VenuesController : ApiControllerBase
     {
         private readonly ICreateVenueUseCase _createVenueUseCase;
+        private readonly IGetVenueByIdQuery _getVenueByIdQuery;
+
         private readonly ILogger<VenuesController> _controllerLogger;
 
         public VenuesController(
             ICreateVenueUseCase createVenueUseCase,
+            IGetVenueByIdQuery getVenueByIdQuery,
             ILogger<VenuesController> controllerLogger, 
             ILogger<ApiControllerBase> baseLogger)
             : base(baseLogger)
         {
             _createVenueUseCase = createVenueUseCase;
             _controllerLogger = controllerLogger;
+            _getVenueByIdQuery = getVenueByIdQuery;
         }
 
         [HttpPost]
@@ -44,9 +49,12 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetVenueById(int id)
         {
-             _controllerLogger.LogInformation("Requisição recebida para GetVenueById com ID: {VenueId}", id);
-            await Task.Delay(10);
-            return Ok($"GetVenueById chamado com ID = {id}");
+            var result = await _getVenueByIdQuery.ExecuteAsync(id);
+
+            if(result.IsSuccess)
+                return Ok(result.Value);
+
+            return MapErrorToActionResult(result.Error);
         }
     }
 }
