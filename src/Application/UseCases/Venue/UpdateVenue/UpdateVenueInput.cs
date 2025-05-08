@@ -1,7 +1,6 @@
 namespace Application.UseCases.Venue.UpdateVenue
 {
     public record UpdateVenueInput(
-        int VenueId, // Identifier for the Venue to update
         string? Name = null,
         string? Address = null,
         string? City = null,
