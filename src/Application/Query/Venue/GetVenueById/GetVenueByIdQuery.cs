@@ -1,6 +1,5 @@
 using Application.Commons;
 using Application.Interfaces;
-using Application.UseCases.Venue;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Query.Venue.GetVenueById;
@@ -15,7 +14,7 @@ public class GetVenueByIdQuery(IUnitOfWork uow, ILogger<GetVenueByIdQuery> log) 
             if (venue == null)
             {
                 log.LogWarning($"Tentativa de buscar venue pelo ID: {id} no banco de dados, mas não foi encontrado.");
-                return Result.Failure<GetVenueByIdOutput>(VenueErrors.NotFound(id));           
+                return Result.Failure<GetVenueByIdOutput>(Error.NotFound("Não foi encontrado registros!"));           
             }
 
             return Result.Success(new GetVenueByIdOutput
@@ -32,7 +31,7 @@ public class GetVenueByIdQuery(IUnitOfWork uow, ILogger<GetVenueByIdQuery> log) 
         catch (Exception ex)
         {
             log.LogError(ex, $"Ocorreu uma excecao ao buscar venue pelo ID: {id} no banco de dados.", id);
-            return Result.Failure<GetVenueByIdOutput>(VenueErrors.InternalError);
+            return Result.Failure<GetVenueByIdOutput>(Error.InternalError);
         }
     }
 }

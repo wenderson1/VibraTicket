@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Application.UseCases.Venue.CreateVenue
 {
@@ -32,7 +27,7 @@ namespace Application.UseCases.Venue.CreateVenue
 
             RuleFor(x => x.Capacity)
                 .GreaterThan(0).WithMessage("A capacidade deve ser maior que zero.");
-            
+
             RuleFor(x => x.Latitude)
                 .InclusiveBetween(-90, 90).When(x => x.Latitude.HasValue)
                 .WithMessage("A latitude deve estar entre -90 e 90.");
