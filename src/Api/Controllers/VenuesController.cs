@@ -17,7 +17,7 @@ namespace Api.Controllers
         public VenuesController(
             ICreateVenueUseCase createVenueUseCase,
             IGetVenueByIdQuery getVenueByIdQuery,
-            ILogger<VenuesController> controllerLogger, 
+            ILogger<VenuesController> controllerLogger,
             ILogger<ApiControllerBase> baseLogger)
             : base(baseLogger)
         {
@@ -33,7 +33,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateVenue([FromBody] CreateVenueInput input, CancellationToken cancellationToken)
         {
-             _controllerLogger.LogInformation("Recebida requisição para criar Venue: {VenueName}", input?.Name ?? "Nome não fornecido");
+            _controllerLogger.LogInformation("Recebida requisição para criar Venue: {VenueName}", input?.Name ?? "Nome não fornecido");
 
             Result<int> result = await _createVenueUseCase.ExecuteAsync(input!, cancellationToken);
 
@@ -51,7 +51,7 @@ namespace Api.Controllers
         {
             var result = await _getVenueByIdQuery.ExecuteAsync(id);
 
-            if(result.IsSuccess)
+            if (result.IsSuccess)
                 return Ok(result.Value);
 
             return MapErrorToActionResult(result.Error);
