@@ -1,8 +1,5 @@
-// src/Application/Common/BaseInput.cs (ou similar)
 using FluentValidation;
 using FluentValidation.Results;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Application.Commons

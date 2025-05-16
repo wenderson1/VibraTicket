@@ -23,15 +23,16 @@ namespace Application.UseCases.Venue.CreateVenue
 
                 var venue = MapToVenue(input);
                 await uow.Venues.AddAsync(venue);
-
                 await uow.SaveChangesAsync(cancellationToken);
+
+                log.LogInformation("Criado Venue: {0}", input);
 
                 return venue.Id;
             }
             catch (Exception ex)
             {
-                log.LogError(ex, $"Erro ao salvar o Venue com nome {input.Name} no banco de dados.", input.Name);
-                return Result.Failure<int>(Error.InternalError);
+                log.LogError(ex, "Erro inesperado durante a execução de CreateVenueUseCase para o Venue com nome {VenueName}.", input.Name);
+                throw;
             }
         }
 

@@ -13,6 +13,6 @@
         public double? Longitude { get; set; }
 
         // Navigation Property
-        public ICollection<Event> Events { get; private set; } = new List<Event>();
+        public ICollection<Event> Events { get; private set; } = [];
     }
 }
