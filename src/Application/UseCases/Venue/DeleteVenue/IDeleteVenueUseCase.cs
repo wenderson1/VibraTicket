@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Application.Commons;
 
 namespace Application.UseCases.Venue.DeleteVenue
 {
     public interface IDeleteVenueUseCase
     {
-        
+        Task<Result<bool>> Execute(int id);
     }
 }

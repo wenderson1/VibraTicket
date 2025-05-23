@@ -1,5 +1,3 @@
-using System.Reflection.Metadata;
-using Domain.Entities;
 using Application.Commons;
 using Application.Interfaces;
 using FluentValidation;
@@ -8,7 +6,9 @@ using FluentValidation.Results;
 
 namespace Application.UseCases.Venue.UpdateVenue;
 
-public class UpdateVenueUseCase(IUnitOfWork uow, IValidator<UpdateVenueInput> validator, ILogger<UpdateVenueUseCase> log)
+public class UpdateVenueUseCase(IUnitOfWork uow,
+                                IValidator<UpdateVenueInput> validator,
+                                ILogger<UpdateVenueUseCase> log) : IUpdateVenueUseCase
 {
     public async Task<Result<bool>> Execute(int id, UpdateVenueInput input)
     {

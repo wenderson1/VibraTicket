@@ -1,6 +1,9 @@
 ﻿using Application.Interfaces;
 using Application.Interfaces.Repository;
+using Application.Query.Venue.GetVenueById;
 using Application.UseCases.Venue.CreateVenue;
+using Application.UseCases.Venue.DeleteVenue;
+using Application.UseCases.Venue.UpdateVenue;
 using FluentValidation;
 using Infrastructure.Persistence;
 using Infrastructure.Repositories;
@@ -30,6 +33,9 @@ namespace Api.Configurations
 
             // --- Registrar Use Cases (Application) ---
             services.AddScoped<ICreateVenueUseCase, CreateVenueUseCase>();
+            services.AddScoped<IGetVenueByIdQuery, GetVenueByIdQuery>();
+            services.AddScoped<IUpdateVenueUseCase, UpdateVenueUseCase>();
+            services.AddScoped<IDeleteVenueUseCase, DeleteVenueUseCase>();
             // Adicione outros Use Cases aqui...
 
 

@@ -4,7 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.UseCases.Venue.DeleteVenue
 {
-    public class DeleteVenueUseCase(IUnitOfWork uow, ILogger<DeleteVenueUseCase> log)
+    public class DeleteVenueUseCase(IUnitOfWork uow,
+                                    ILogger<DeleteVenueUseCase> log) : IDeleteVenueUseCase
     {
         public async Task<Result<bool>> Execute(int id)
         {
