@@ -24,9 +24,8 @@ public class UpdateVenueUseCase(IUnitOfWork uow,
 
             var venue = await uow.Venues.GetByIdAsync(id);
             if (venue is null)
-            {
                 return Result.Failure<bool>(Error.NotFound("Não foi encontrado o Local"));
-            }
+
 
             uow.Venues.Update(MapToVenue(input, venue));
             await uow.SaveChangesAsync();
