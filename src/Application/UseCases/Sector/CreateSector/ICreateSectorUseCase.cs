@@ -1,10 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Commons;
 
 namespace Application.UseCases.Sector.CreateSector
 {
     public interface ICreateSectorUseCase
     {
-        public Task<Result<int>> ExecuteAsync(CreateSectorInput input, CancellationToken cancellationToken);
+        Task<Result<int>> ExecuteAsync(CreateSectorInput input, CancellationToken cancellationToken);
     }
 }

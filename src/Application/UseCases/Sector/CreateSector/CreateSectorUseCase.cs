@@ -26,7 +26,7 @@ public class CreateSectorUseCase : ICreateSectorUseCase
         try
         {
             log.LogInformation("Iniciando criação de Sector com nome: {0}", input.Name);
-            ValidationResult validationResult = input.Validate(validator);
+            ValidationResult validationResult = validator.Validate(input);
             if (!validationResult.IsValid)
             {
                 log.LogWarning("Validação do CreateSectorInput falhou: {@ValidationErrors}", validationResult.Errors);

@@ -12,6 +12,5 @@ namespace Application.UseCases.Sector.CreateSector
         public decimal Price { get; set; }
         public int EventId { get; set; }
         public int AvailableTickets { get; set; }
-        public int Capacity { get; set; }
     }
 }
