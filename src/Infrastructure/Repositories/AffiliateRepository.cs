@@ -1,7 +1,6 @@
 using Application.Interfaces.Repository;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -16,6 +15,16 @@ namespace Infrastructure.Repositories
         public async Task AddAsync(Affiliate affiliate)
         {
             await _context.Set<Affiliate>().AddAsync(affiliate);
+        }
+
+        public async Task<Affiliate?> GetByIdAsync(int id)
+        {
+            return await _context.Set<Affiliate>().FindAsync(id);
+        }
+
+        public void Update(Affiliate affiliate)
+        {
+            _context.Set<Affiliate>().Update(affiliate);
         }
     }
 }

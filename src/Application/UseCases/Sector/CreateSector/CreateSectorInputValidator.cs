@@ -19,6 +19,7 @@ namespace Application.UseCases.Sector.CreateSector
             RuleFor(x => x.EventId)
                 .GreaterThan(0).WithMessage("O ID do evento é obrigatório e deve ser maior que zero.");
 
+
             RuleFor(x => x.AvailableTickets)
                 .GreaterThanOrEqualTo(0).WithMessage("A quantidade de ingressos disponíveis deve ser maior ou igual a zero.")
                 .LessThanOrEqualTo(x => x.Capacity).WithMessage("A quantidade de ingressos disponíveis não pode ser maior que a capacidade.");
