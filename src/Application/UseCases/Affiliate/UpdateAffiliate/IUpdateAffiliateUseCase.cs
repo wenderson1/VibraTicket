@@ -1,5 +1,4 @@
 using Application.Commons;
-using System.Threading.Tasks;
 
 namespace Application.UseCases.Affiliate.UpdateAffiliate
 {
