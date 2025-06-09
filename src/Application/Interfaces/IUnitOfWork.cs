@@ -7,5 +7,9 @@ public interface IUnitOfWork : IDisposable
     IVenueRepository Venues { get; }
     ISectorRepository Sectors { get; }
     IAffiliateRepository Affiliates { get; } // Adicionado para suportar Affiliate
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    ICustomerRepository Customers { get; }
+    IEventRepository Events { get; }
+    IOrderRepository Orders { get; }
+    IPaymentRepository Payments { get; }
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

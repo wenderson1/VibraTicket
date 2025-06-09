@@ -4,24 +4,38 @@ using Infrastructure.Repositories;
 
 namespace Infrastructure.Persistence;
 
-public class UnitOfWork(AppDbContext context) : IUnitOfWork
+public class UnitOfWork : IUnitOfWork
 {
-    private IVenueRepository? _venueRepository;
-    private ISectorRepository? _sectorRepository;
-    private IAffiliateRepository? _affiliateRepository;
-    
-    public IVenueRepository Venues => _venueRepository ??= new VenueRepository(context);
-    public ISectorRepository Sectors => _sectorRepository ??= new SectorRepository(context);
-    public IAffiliateRepository Affiliates => _affiliateRepository ??= new AffiliateRepository(context);
+    private readonly AppDbContext _context;
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public UnitOfWork(AppDbContext context)
     {
-        return await context.SaveChangesAsync(cancellationToken);
+        _context = context;
+        Affiliates = new AffiliateRepository(context);
+        Customers = new CustomerRepository(context);
+        Events = new EventRepository(context);
+        Orders = new OrderRepository(context);
+        Payments = new PaymentRepository(context);
+        Sectors = new SectorRepository(context);
+        Venues = new VenueRepository(context);
+    }
+
+    public IAffiliateRepository Affiliates { get; }
+    public ICustomerRepository Customers { get; }
+    public IEventRepository Events { get; }
+    public IOrderRepository Orders { get; }
+    public IPaymentRepository Payments { get; }
+    public ISectorRepository Sectors { get; }
+    public IVenueRepository Venues { get; }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public void Dispose()
     {
-        context.Dispose();
+        _context.Dispose();
         GC.SuppressFinalize(this);
     }
 }
