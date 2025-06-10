@@ -42,6 +42,7 @@ namespace Api.Configurations
             services.AddScoped<Application.UseCases.Customer.UpdateCustomer.IUpdateCustomerUseCase, Application.UseCases.Customer.UpdateCustomer.UpdateCustomerUseCase>();
             services.AddScoped<Application.Query.Customer.GetCustomerById.IGetCustomerByIdQuery, Application.Query.Customer.GetCustomerById.GetCustomerByIdQuery>();
             services.AddScoped<Application.Query.Customer.GetCustomerByDocument.IGetCustomerByDocumentQuery, Application.Query.Customer.GetCustomerByDocument.GetCustomerByDocumentQuery>();
+            services.AddScoped<Application.Query.Customer.GetCustomerByEmail.IGetCustomerByEmailQuery, Application.Query.Customer.GetCustomerByEmail.GetCustomerByEmailQuery>();
             // Adicione outros Use Cases aqui...
 
 
