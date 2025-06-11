@@ -1,137 +1,81 @@
-# Diagrama Técnico Detalhado
+# Arquitetura do VibraTicket
 
-```mermaid
-graph TB
-    subgraph "API Layer"
-        CONT[Controllers] --> MWARE[Middleware]
-        CONT --> DI[Dependency Injection]
-        CONT --> FILTER[Filters]
+## Diagrama Geral
+graph TD
+    API[API Layer]
+    APP[Application Layer]
+    DOMAIN[Domain Layer]
+    INFRA[Infrastructure Layer]
+
+    API --> APP
+    APP --> DOMAIN
+    INFRA --> APP
+    INFRA --> DOMAIN
+
+    subgraph API Layer
+        CONTROLLERS[Controllers]
+        MIDDLEWARE[Middleware]
+        DI[Dependency Injection]
     end
 
-    subgraph "Application Layer"
-        UC[Use Cases] --> VAL[Validators]
-        UC --> PORT[Interfaces/Ports]
-        QUERY[Queries] --> PORT
-        UC --> COMMON[Commons]
-        QUERY --> COMMON
+    subgraph Application Layer
+        USECASES[UseCases]
+        QUERIES[Queries]
+        VALIDATORS[Validators]
+        DTOs[DTOs]
+        INTERFACES[Interfaces]
     end
 
-    subgraph "Domain Layer"
-        ENT[Entities] --> VO[Value Objects]
-        ENT --> RULES[Domain Rules]
-        ENT --> EVENTS[Domain Events]
+    subgraph Domain Layer
+        ENTITIES[Entities]
+        VALUEOBJECTS[Value Objects]
+        REPOINTERFACES[Repository Interfaces]
     end
 
-    subgraph "Infrastructure Layer"
-        DB[(Database)] --> REPOS[Repositories]
-        REPOS --> UOW[Unit of Work]
-        CONF[Entity Configurations] --> DB
+    subgraph Infrastructure Layer
+        DB[Database]
+        REPOSITORIES[Repositories]
+        UOW[Unit of Work]
+        CONFIGS[Entity Configurations]
     end
+## Diagrama das Entidades
+graph TD
+    Customer -->|1..*| Order
+    Order -->|*..1| Customer
+    Order -->|*..1| Payment
+    Order -->|*..*| Ticket
+    Event -->|1..*| Sector
+    Sector -->|1..*| Ticket
+    Event -->|*..1| Venue
+    Affiliate -->|1..*| Event
+## Fluxos
 
-    %% Cross-layer dependencies
-    CONT --> UC
-    CONT --> QUERY
-    UC --> ENT
-    QUERY --> ENT
-    REPOS --> ENT
-    UOW --> PORT
+- **Request:** Controller ? UseCase/Query ? Repository ? Database
+- **Response:** Database ? Repository ? Query/DTO ? Controller ? HTTP Response
+- **Validação:** Input ? Validator ? UseCase ? Result
 
-    %% Entity relationships
-    subgraph "Domain Entities"
-        CUSTOMER[Customer] --> ORDER[Order]
-        EVENT[Event] --> SECTOR[Sector]
-        SECTOR --> TICKET[Ticket]
-        ORDER --> TICKET
-        ORDER --> PAYMENT[Payment]
-        EVENT --> VENUE[Venue]
-        AFFILIATE[Affiliate] --> EVENT
-    end
+## Camadas
 
-    %% Use Cases flow
-    subgraph "Business Flow"
-        CREATE[Create] --> READ[Read]
-        READ --> UPDATE[Update]
-        UPDATE --> DELETE[Delete]
-        CREATE --> VALIDATE[Validate]
-        UPDATE --> VALIDATE
-    end
+### API
+- Controllers, Middleware, DI, Swagger
 
-    style API fill:#f9f,stroke:#333,stroke-width:2px
-    style Application fill:#bbf,stroke:#333,stroke-width:2px
-    style Domain fill:#bfb,stroke:#333,stroke-width:2px
-    style Infrastructure fill:#fbb,stroke:#333,stroke-width:2px
-```
+### Application
+- UseCases, Queries, Validators, DTOs, Interfaces
 
-## Detalhes do Fluxo de Dados
+### Domain
+- Entities, Value Objects, Repository Interfaces
 
-1. **Request Flow**
-   ```
-   HTTP Request ? Controller ? Use Case ? Repository ? Database
-   ```
+### Infrastructure
+- DbContext, Repositories, Unit of Work, Configurações
 
-2. **Response Flow**
-   ```
-   Database ? Repository ? Query ? DTO ? Controller ? HTTP Response
-   ```
+## Padrões de Projeto
 
-3. **Validation Flow**
-   ```
-   Input ? Validator ? Use Case ? Business Rules ? Result
-   ```
+- CQRS (UseCases/Queries)
+- Repository & Unit of Work
+- Dependency Injection
+- Result Pattern
+- Validator Pattern
 
-## Estrutura de Camadas
+---
 
-### API Layer
-- Controllers
-- Filters
-- Middleware
-- DI Container
-- Error Handling
-
-### Application Layer
-- Use Cases
-- Queries
-- Validators
-- DTOs
-- Interfaces
-- Common Utils
-
-### Domain Layer
-- Entities
-- Value Objects
-- Domain Rules
-- Events
-- Interfaces
-
-### Infrastructure Layer
-- DbContext
-- Repositories
-- Configurations
-- Unit of Work
-- External Services
-
-## Design Patterns Utilizados
-
-1. **CQRS Pattern**
-   - Commands (Use Cases)
-   - Queries
-
-2. **Repository Pattern**
-   - Generic Repository
-   - Specific Repositories
-
-3. **Unit of Work**
-   - Transaction Management
-   - Change Tracking
-
-4. **Factory Pattern**
-   - Entity Creation
-   - DTO Mapping
-
-5. **Validator Pattern**
-   - Input Validation
-   - Business Rules
-
-6. **Result Pattern**
-   - Error Handling
-   - Success/Failure
+> Para detalhes de entidades, regras e exemplos, consulte o código-fonte e o README principal.
