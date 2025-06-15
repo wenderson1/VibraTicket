@@ -48,6 +48,9 @@ namespace Api.Configurations
             services.AddScoped<Application.Query.Affiliate.GetAffiliateByDocument.IGetAffiliateByDocumentQuery, Application.Query.Affiliate.GetAffiliateByDocument.GetAffiliateByDocumentQuery>();
             services.AddScoped<Application.UseCases.Affiliate.DeleteAffiliate.IDeleteAffiliateUseCase, Application.UseCases.Affiliate.DeleteAffiliate.DeleteAffiliateUseCase>();
 
+            // --- Sector Use Cases ---
+            services.AddScoped<Application.UseCases.Sector.CreateSector.ICreateSectorUseCase, Application.UseCases.Sector.CreateSector.CreateSectorUseCase>();
+            services.AddScoped<Application.UseCases.Sector.UpdateSector.IUpdateSectorUseCase, Application.UseCases.Sector.UpdateSector.UpdateSectorUseCase>();
 
             // --- Registrar Validadores (Application - FluentValidation) ---
             // Esta linha busca por todas as classes que herdam de AbstractValidator
