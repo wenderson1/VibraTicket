@@ -22,6 +22,12 @@ namespace Infrastructure.Repositories
             return await _context.Set<Affiliate>().FindAsync(id);
         }
 
+        public async Task<Affiliate?> GetByDocumentAsync(string document)
+        {
+            return await _context.Set<Affiliate>()
+                .FirstOrDefaultAsync(a => a.Document == document);
+        }
+
         public void Update(Affiliate affiliate)
         {
             _context.Set<Affiliate>().Update(affiliate);

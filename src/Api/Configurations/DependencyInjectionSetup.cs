@@ -1,12 +1,10 @@
 ﻿using Application.Interfaces;
-using Application.Interfaces.Repository;
 using Application.Query.Venue.GetVenueById;
 using Application.UseCases.Venue.CreateVenue;
 using Application.UseCases.Venue.DeleteVenue;
 using Application.UseCases.Venue.UpdateVenue;
 using FluentValidation;
 using Infrastructure.Persistence;
-using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Configurations
@@ -43,7 +41,10 @@ namespace Api.Configurations
             services.AddScoped<Application.Query.Customer.GetCustomerById.IGetCustomerByIdQuery, Application.Query.Customer.GetCustomerById.GetCustomerByIdQuery>();
             services.AddScoped<Application.Query.Customer.GetCustomerByDocument.IGetCustomerByDocumentQuery, Application.Query.Customer.GetCustomerByDocument.GetCustomerByDocumentQuery>();
             services.AddScoped<Application.Query.Customer.GetCustomerByEmail.IGetCustomerByEmailQuery, Application.Query.Customer.GetCustomerByEmail.GetCustomerByEmailQuery>();
-            // Adicione outros Use Cases aqui...
+            
+            // --- Affiliate Use Cases & Queries ---
+            services.AddScoped<Application.Query.Affiliate.GetAffiliateById.IGetAffiliateByIdQuery, Application.Query.Affiliate.GetAffiliateById.GetAffiliateByIdQuery>();
+            services.AddScoped<Application.Query.Affiliate.GetAffiliateByDocument.IGetAffiliateByDocumentQuery, Application.Query.Affiliate.GetAffiliateByDocument.GetAffiliateByDocumentQuery>();
 
 
             // --- Registrar Validadores (Application - FluentValidation) ---

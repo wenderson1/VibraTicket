@@ -6,6 +6,7 @@ namespace Application.Interfaces.Repository
     {
         Task AddAsync(Affiliate affiliate);
         Task<Affiliate?> GetByIdAsync(int id);
+        Task<Affiliate?> GetByDocumentAsync(string document);
         void Update(Affiliate affiliate);
     }
 }
