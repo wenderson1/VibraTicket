@@ -35,6 +35,9 @@ namespace Api.Configurations
             services.AddScoped<IUpdateVenueUseCase, UpdateVenueUseCase>();
             services.AddScoped<IDeleteVenueUseCase, DeleteVenueUseCase>();
 
+            // --- Event Use Cases ---
+            services.AddScoped<Application.UseCases.Event.CreateEvent.ICreateEventUseCase, Application.UseCases.Event.CreateEvent.CreateEventUseCase>();
+
             // --- Customer Use Cases & Queries ---
             services.AddScoped<Application.UseCases.Customer.CreateCustomer.ICreateCustomerUseCase, Application.UseCases.Customer.CreateCustomer.CreateCustomerUseCase>();
             services.AddScoped<Application.UseCases.Customer.UpdateCustomer.IUpdateCustomerUseCase, Application.UseCases.Customer.UpdateCustomer.UpdateCustomerUseCase>();
