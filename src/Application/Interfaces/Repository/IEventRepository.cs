@@ -6,7 +6,9 @@ namespace Application.Interfaces.Repository
     {
         Task AddAsync(Event @event);
         Task<Event?> GetByIdAsync(int id);
-        void Update(Event @event);
         Task<Event?> GetByVenueAndDateRangeAsync(int venueId, DateTime startDate, DateTime endDate);
+        Task<bool> HasTicketsAsync(int eventId);
+        void Delete(Event @event);
+        void Update(Event @event);
     }
 }

@@ -39,9 +39,19 @@ namespace Infrastructure.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<bool> HasTicketsAsync(int eventId)
+        {
+            return await _context.Tickets.AnyAsync(t => t.EventId == eventId);
+        }
+
         public void Update(Event @event)
         {
             _context.Events.Update(@event);
+        }
+
+        public void Delete(Event @event)
+        {
+            _context.Events.Remove(@event);
         }
     }
 }
