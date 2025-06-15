@@ -14,6 +14,7 @@ public class Affiliate
     public string? BankBranch { get; set; }
     public decimal DefaultCommissionRate { get; set; }
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public bool IsActive { get; set; } = true;
 
     // Navigation Property
     public ICollection<Event> Events { get; private set; } = new List<Event>();

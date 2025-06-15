@@ -45,6 +45,7 @@ namespace Api.Configurations
             // --- Affiliate Use Cases & Queries ---
             services.AddScoped<Application.Query.Affiliate.GetAffiliateById.IGetAffiliateByIdQuery, Application.Query.Affiliate.GetAffiliateById.GetAffiliateByIdQuery>();
             services.AddScoped<Application.Query.Affiliate.GetAffiliateByDocument.IGetAffiliateByDocumentQuery, Application.Query.Affiliate.GetAffiliateByDocument.GetAffiliateByDocumentQuery>();
+            services.AddScoped<Application.UseCases.Affiliate.DeleteAffiliate.IDeleteAffiliateUseCase, Application.UseCases.Affiliate.DeleteAffiliate.DeleteAffiliateUseCase>();
 
 
             // --- Registrar Validadores (Application - FluentValidation) ---

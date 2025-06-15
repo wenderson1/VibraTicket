@@ -7,6 +7,8 @@ namespace Infrastructure.Repositories
     public class AffiliateRepository : IAffiliateRepository
     {
         private readonly DbContext _context;
+        private IQueryable<Affiliate> ActiveAffiliates => _context.Set<Affiliate>().Where(a => a.IsActive);
+
         public AffiliateRepository(DbContext context)
         {
             _context = context;
@@ -19,13 +21,12 @@ namespace Infrastructure.Repositories
 
         public async Task<Affiliate?> GetByIdAsync(int id)
         {
-            return await _context.Set<Affiliate>().FindAsync(id);
+            return await ActiveAffiliates.FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<Affiliate?> GetByDocumentAsync(string document)
         {
-            return await _context.Set<Affiliate>()
-                .FirstOrDefaultAsync(a => a.Document == document);
+            return await ActiveAffiliates.FirstOrDefaultAsync(a => a.Document == document);
         }
 
         public void Update(Affiliate affiliate)
