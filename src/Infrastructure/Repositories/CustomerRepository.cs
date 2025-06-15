@@ -8,6 +8,7 @@ namespace Infrastructure.Repositories
     public class CustomerRepository : ICustomerRepository
     {
         private readonly AppDbContext _context;
+        private IQueryable<Customer> ActiveCustomers => _context.Customers.Where(c => c.IsActive);
 
         public CustomerRepository(AppDbContext context)
         {
@@ -21,19 +22,17 @@ namespace Infrastructure.Repositories
 
         public async Task<Customer?> GetByIdAsync(int id)
         {
-            return await _context.Customers.FindAsync(id);
+            return await ActiveCustomers.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Customer?> GetByEmailAsync(string email)
         {
-            return await _context.Customers
-                .FirstOrDefaultAsync(c => c.Email == email && c.IsActive);
+            return await ActiveCustomers.FirstOrDefaultAsync(c => c.Email == email);
         }
 
         public async Task<Customer?> GetByDocumentAsync(string document)
         {
-            return await _context.Customers
-                .FirstOrDefaultAsync(c => c.Document == document && c.IsActive);
+            return await ActiveCustomers.FirstOrDefaultAsync(c => c.Document == document);
         }
 
         public void Update(Customer customer)
