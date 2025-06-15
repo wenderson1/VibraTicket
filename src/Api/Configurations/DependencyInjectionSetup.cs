@@ -37,6 +37,7 @@ namespace Api.Configurations
 
             // --- Event Use Cases ---
             services.AddScoped<Application.UseCases.Event.CreateEvent.ICreateEventUseCase, Application.UseCases.Event.CreateEvent.CreateEventUseCase>();
+            services.AddScoped<Application.UseCases.Event.UpdateEvent.IUpdateEventUseCase, Application.UseCases.Event.UpdateEvent.UpdateEventUseCase>();
 
             // --- Customer Use Cases & Queries ---
             services.AddScoped<Application.UseCases.Customer.CreateCustomer.ICreateCustomerUseCase, Application.UseCases.Customer.CreateCustomer.CreateCustomerUseCase>();
