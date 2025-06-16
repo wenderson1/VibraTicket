@@ -22,5 +22,10 @@ namespace Infrastructure.Repositories
                 .Include(t => t.Sector)
                 .FirstOrDefaultAsync(t => t.Id == id);
         }
+
+        public void Update(Ticket ticket)
+        {
+            _context.Tickets.Update(ticket);
+        }
     }
 }
