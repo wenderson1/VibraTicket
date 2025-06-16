@@ -11,5 +11,6 @@ public interface IUnitOfWork : IDisposable
     IEventRepository Events { get; }
     IOrderRepository Orders { get; }
     IPaymentRepository Payments { get; }
+    ITicketRepository Tickets { get; }
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
