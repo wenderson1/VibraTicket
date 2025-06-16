@@ -45,6 +45,9 @@ namespace Api.Configurations
             // --- Order Use Cases ---
             services.AddScoped<Application.UseCases.Order.CreateOrder.ICreateOrderUseCase, Application.UseCases.Order.CreateOrder.CreateOrderUseCase>();
 
+            // --- Payment Use Cases ---
+            services.AddScoped<Application.UseCases.Payment.CreatePayment.ICreatePaymentUseCase, Application.UseCases.Payment.CreatePayment.CreatePaymentUseCase>();
+
             // --- Customer Use Cases & Queries ---
             services.AddScoped<Application.UseCases.Customer.CreateCustomer.ICreateCustomerUseCase, Application.UseCases.Customer.CreateCustomer.CreateCustomerUseCase>();
             services.AddScoped<Application.UseCases.Customer.UpdateCustomer.IUpdateCustomerUseCase, Application.UseCases.Customer.UpdateCustomer.UpdateCustomerUseCase>();
