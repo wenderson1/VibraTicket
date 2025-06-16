@@ -5,7 +5,8 @@ namespace Application.Interfaces.Repository
     public interface IPaymentRepository
     {
         Task AddAsync(Payment payment);
-        Task<Payment?> GetByIdAsync(int id);
+        Task<Payment?> GetByIdAsync(Guid id);
+        Task<IEnumerable<Payment>> GetByOrderIdAsync(int orderId);
         void Update(Payment payment);
     }
 }
