@@ -28,7 +28,6 @@ namespace Api.Configurations
             // Não precisamos mais registrar IVenueRepository explicitamente se acessarmos via IUnitOfWork
             // services.AddScoped<IVenueRepository, VenueRepository>();
 
-
             // --- Registrar Use Cases (Application) ---
             services.AddScoped<ICreateVenueUseCase, CreateVenueUseCase>();
             services.AddScoped<IGetVenueByIdQuery, GetVenueByIdQuery>();
@@ -59,6 +58,8 @@ namespace Api.Configurations
             // --- Affiliate Use Cases & Queries ---
             services.AddScoped<Application.Query.Affiliate.GetAffiliateById.IGetAffiliateByIdQuery, Application.Query.Affiliate.GetAffiliateById.GetAffiliateByIdQuery>();
             services.AddScoped<Application.Query.Affiliate.GetAffiliateByDocument.IGetAffiliateByDocumentQuery, Application.Query.Affiliate.GetAffiliateByDocument.GetAffiliateByDocumentQuery>();
+            services.AddScoped<Application.UseCases.Affiliate.CreateAffiliate.ICreateAffiliateUseCase, Application.UseCases.Affiliate.CreateAffiliate.CreateAffiliateUseCase>();
+            services.AddScoped<Application.UseCases.Affiliate.UpdateAffiliate.IUpdateAffiliateUseCase, Application.UseCases.Affiliate.UpdateAffiliate.UpdateAffiliateUseCase>();
             services.AddScoped<Application.UseCases.Affiliate.DeleteAffiliate.IDeleteAffiliateUseCase, Application.UseCases.Affiliate.DeleteAffiliate.DeleteAffiliateUseCase>();
 
             // --- Sector Use Cases ---
