@@ -24,6 +24,16 @@ namespace Infrastructure.Repositories
             return await _context.Payments.FindAsync(id);
         }
 
+        public Task<Payment?> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Payment>> GetByOrderIdAsync(int orderId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Payment payment)
         {
             _context.Payments.Update(payment);
