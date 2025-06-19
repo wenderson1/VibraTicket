@@ -67,10 +67,10 @@ namespace Api.Controllers
             return MapErrorToActionResult(result.Error);
         }
 
-        [HttpGet("ticket/{ticketId:int}")]
+        [HttpGet("ticket/{ticketId:Guid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetEventByTicketId(int ticketId, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetEventByTicketId(Guid ticketId, CancellationToken cancellationToken)
         {
             var result = await _getEventByTicketIdQuery.ExecuteAsync(ticketId, cancellationToken);
 
@@ -87,12 +87,7 @@ namespace Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateEvent(int id, [FromBody] UpdateEventInput input, CancellationToken cancellationToken)
         {
-            if (id != input.Id)
-            {
-                return BadRequest("ID in URL does not match ID in request body");
-            }
-
-            var result = await _updateEventUseCase.ExecuteAsync(input, cancellationToken);
+            var result = await _updateEventUseCase.ExecuteAsync(id, input, cancellationToken);
 
             if (result.IsSuccess)
                 return Ok();
