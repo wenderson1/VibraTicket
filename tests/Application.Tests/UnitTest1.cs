@@ -1,4 +1,4 @@
-﻿namespace Application.Tests;
+﻿amespace Application.Tests;
 
 public class UnitTest1
 {
