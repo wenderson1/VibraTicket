@@ -18,10 +18,9 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDependencyInjection(builder.Configuration); // Supondo que este método de extensão configure suas dependências de app
+builder.Services.AddDependencyInjection(builder.Configuration); 
 
-builder.Services.AddFluentValidationAutoValidation(); // Ótimo para validação automática
-
+builder.Services.AddFluentValidationAutoValidation();
 var app = builder.Build();
 
 app.UseExceptionHandler();
