@@ -1,3 +1,5 @@
+using Application.Commons;
+
 namespace Application.UseCases.Venue.UpdateVenue
 {
     public record UpdateVenueInput(
@@ -9,5 +11,6 @@ namespace Application.UseCases.Venue.UpdateVenue
         int? Capacity = null,
         double? Latitude = null,
         double? Longitude = null
-    );
+    ) : InputBase<UpdateVenueInput>
+    {}
 }

@@ -67,11 +67,29 @@ namespace Application.UseCases.Affiliate.UpdateAffiliate
             if (!string.IsNullOrEmpty(input.Document))
                 affiliate.Document = input.Document;
 
-            affiliate.Email = input.Email;
-            affiliate.Phone = input.Phone;
-            affiliate.BankName = input.BankName;
-            affiliate.BankAccount = input.BankAccount;
-            affiliate.BankBranch = input.BankBranch;
+            if (input.Name != null)
+                affiliate.Name = input.Name;
+
+            if (input.FullName != null)
+                affiliate.FullName = input.FullName;
+
+            if (input.Document != null)
+                affiliate.Document = input.Document;
+
+            if (input.Email != null)
+                affiliate.Email = input.Email;
+
+            if (input.Phone != null)
+                affiliate.Phone = input.Phone;
+
+            if (input.BankName != null)
+                affiliate.BankName = input.BankName;
+
+            if (input.BankAccount != null)
+                affiliate.BankAccount = input.BankAccount;
+
+            if (input.BankBranch != null)
+                affiliate.BankBranch = input.BankBranch;
 
             if (input.DefaultCommissionRate.HasValue)
                 affiliate.DefaultCommissionRate = input.DefaultCommissionRate.Value;

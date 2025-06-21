@@ -120,8 +120,8 @@ public class AffiliateController : ControllerBase
 
         return result.Error.Type switch
         {
-            Error.ErrorType.NotFound => NotFound(result),
-            _ => StatusCode(500, result)
+            Error.ErrorType.NotFound => NotFound(result.Error),
+            _ => StatusCode(500, result.Error)
         };
     }
 
