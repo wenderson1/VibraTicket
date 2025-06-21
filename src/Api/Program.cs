@@ -23,7 +23,7 @@ builder.Services.AddDependencyInjection(builder.Configuration);
 builder.Services.AddFluentValidationAutoValidation();
 var app = builder.Build();
 
-app.UseExceptionHandler();
+app.UseExceptionHandler("/error");
 
 if (app.Environment.IsDevelopment())
 {

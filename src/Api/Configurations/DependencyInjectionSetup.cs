@@ -28,7 +28,9 @@ namespace Api.Configurations
             // Não precisamos mais registrar IVenueRepository explicitamente se acessarmos via IUnitOfWork
             // services.AddScoped<IVenueRepository, VenueRepository>();
 
+            services.AddValidatorsFromAssembly(typeof(UpdateVenueInputValidation).Assembly);
             // --- Registrar Use Cases (Application) ---
+
             services.AddScoped<ICreateVenueUseCase, CreateVenueUseCase>();
             services.AddScoped<IGetVenueByIdQuery, GetVenueByIdQuery>();
             services.AddScoped<IUpdateVenueUseCase, UpdateVenueUseCase>();
@@ -65,6 +67,8 @@ namespace Api.Configurations
             // --- Sector Use Cases ---
             services.AddScoped<Application.UseCases.Sector.CreateSector.ICreateSectorUseCase, Application.UseCases.Sector.CreateSector.CreateSectorUseCase>();
             services.AddScoped<Application.UseCases.Sector.UpdateSector.IUpdateSectorUseCase, Application.UseCases.Sector.UpdateSector.UpdateSectorUseCase>();
+
+            services.AddScoped<IUpdateVenueUseCase, UpdateVenueUseCase>();
 
             // --- Registrar Validadores (Application - FluentValidation) ---
             // Esta linha busca por todas as classes que herdam de AbstractValidator
