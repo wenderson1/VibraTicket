@@ -10,22 +10,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomersController : ApiControllerBase
+    public class CustomerController : ApiControllerBase
     {
         private readonly ICreateCustomerUseCase _createCustomerUseCase;
         private readonly IUpdateCustomerUseCase _updateCustomerUseCase;
         private readonly IGetCustomerByIdQuery _getCustomerByIdQuery;
         private readonly IGetCustomerByDocumentQuery _getCustomerByDocumentQuery;
         private readonly IGetCustomerByEmailQuery _getCustomerByEmailQuery;
-        private readonly ILogger<CustomersController> _controllerLogger;
+        private readonly ILogger<CustomerController> _controllerLogger;
 
-        public CustomersController(
+        public CustomerController(
             ICreateCustomerUseCase createCustomerUseCase,
             IUpdateCustomerUseCase updateCustomerUseCase,
             IGetCustomerByIdQuery getCustomerByIdQuery,
             IGetCustomerByDocumentQuery getCustomerByDocumentQuery,
             IGetCustomerByEmailQuery getCustomerByEmailQuery,
-            ILogger<CustomersController> controllerLogger,
+            ILogger<CustomerController> controllerLogger,
             ILogger<ApiControllerBase> logger) : base(logger)
         {
             _createCustomerUseCase = createCustomerUseCase;
